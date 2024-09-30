@@ -1,14 +1,5 @@
--- Read the docs: https://www.lunarvim.org/docs/configuration
--- Example configs: https://github.com/LunarVim/starter.lvim
--- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
--- Forum: https://www.reddit.com/r/lunarvim/
--- Discord: https://
--- Forum: https://www.reddit.com/r/lunarvim/
--- Discord: https://discord.com/invite/Xb9B4Ny
-
-
 lvim.plugins = {
-  {
+    {
     "Diogo-ss/42-header.nvim",
     lazy = false,
     config = function()
@@ -20,8 +11,8 @@ lvim.plugins = {
         mail = "melhajja@student.1337.ma", -- your mail
       })
     end
-  },
-      {
+    },
+    {
         'uloco/bluloco.nvim',
         lazy = false,
         priority = 1000,
@@ -29,7 +20,32 @@ lvim.plugins = {
         config = function()
           -- your optional config goes here, see below.
         end,
-      },
+    },
+    {
+        "NStefan002/speedtyper.nvim",
+        cmd = "Speedtyper",
+        opts = {
+        -- your config
+        }
+    },
+    {
+        'fedepujol/move.nvim',
+        opts = {
+        --- Config
+        },
+    },
+    {
+        "eldritch-theme/eldritch.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    {
+        "cpea2506/one_monokai.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
     -- {
     --     "folke/todo-comments.nvim",  -- Added todo-tree.nvim plugin
     --     requires = "nvim-lua/plenary.nvim",
@@ -41,10 +57,28 @@ lvim.plugins = {
     -- },
 }
 
+-- lvim.builtin.treesitter.ensure_installed = {
+--   "python",
+-- }
 
+local opts = { noremap = true, silent = true }
+-- Normal-mode commands
+vim.keymap.set('n', '<A-j>', ':MoveLine(1)<CR>', opts)
+vim.keymap.set('n', '<A-k>', ':MoveLine(-1)<CR>', opts)
+vim.keymap.set('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
+vim.keymap.set('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
+vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
+vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
 
-lvim.colorscheme = "bluloco-dark"
--- lvim.colorscheme = "lunar"
+-- Visual-mode commands
+vim.keymap.set('v', '<A-j>', ':MoveBlock(1)<CR>', opts)
+vim.keymap.set('v', '<A-k>', ':MoveBlock(-1)<CR>', opts)
+vim.keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
+vim.keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
+--choose theme
+-- lvim.colorscheme = "bluloco-dark"
+lvim.colorscheme = "one_monokai"
+-- lvim.colorscheme = "eldritch"
 -- lvim.keys.insert_mode["jj"] = "<Esc>"
 -- lvim.keys.insert_mode["JJ"] = "<Esc>"
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
